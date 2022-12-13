@@ -2,6 +2,12 @@ const SIZE = 800;
 
 const container = document.querySelector('#container');
 
+function randomNum() {
+    let rand = Math.random() * 255;
+    rand = Math.floor(rand);
+    return rand;
+}
+
 function buildGrid(cell_size) {
 
     //building the rows
@@ -16,8 +22,16 @@ function buildGrid(cell_size) {
             cell.classList.add('cell');
             cell.style.cssText = `width: ${cell_size}px; height: ${cell_size}px;`;
 
-
-            cell.addEventListener('mouseover', (e) => cell.style.backgroundColor = 'gold');
+            let red = randomNum();
+            let green = randomNum();
+            let blue = randomNum();
+            let brightness = 100;
+            cell.addEventListener('mouseover', (e) => {
+                //cell.style.backgroundColor = 'gold';
+                cell.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+                cell.style.filter = `brightness(${brightness}%)`;
+                brightness -= 10;
+            });
 
             box.appendChild(cell);
         }
